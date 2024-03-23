@@ -1,4 +1,11 @@
 {% load static %}
+{% if iteration is None %}
+{% if user_won %}
+<p>You won!</p>
+{% else %}
+<p>You lost!</p>
+{% endif %}
+{% else %}
 <button 
     class="btn btn-primary"
     hx-get="{% url 'next_war_iteration' %}"
@@ -27,3 +34,4 @@
 {% endwith %}
 {% endfor %}
 </div>
+{% endif %}

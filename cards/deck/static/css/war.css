@@ -4,6 +4,7 @@
 
 .toDeck1 {
   animation: scaleAnimation 1s, moveUpAnimation  1s;
+  opacity: 0;
 }
 
 @keyframes scaleAnimation {
@@ -22,7 +23,7 @@
     transform: translateY(0);
   }
   to {
-    transform: translateY(-90%);
+    transform: translateY(90%);
   }
 }
 
@@ -31,12 +32,13 @@
     transform: translateY(0);
   }
   to {
-    transform: translateY(90%);
+    transform: translateY(-90%);
   }
 }
 
 .toDeck2 {
   animation: scaleAnimation 1s, moveDownAnimation  1s;
+  opacity: 0;
 }
 
 @keyframes moveRowAnimation {
@@ -50,6 +52,12 @@
 
 .inWarBounty {
     grid-row: 2;
+}
+
+.toWarBounty {
+    grid-row: 2;
+    animation: scaleAnimation 1s;
+    opacity: 0;
 }
 
 .inHand2 {

@@ -136,10 +136,9 @@ def new_war_game(request: HttpRequest) -> HttpResponse:
 def next_war_iteration(request: HttpRequest) -> HttpResponse:
     data = request.GET
     last_iteration_pk = data.get("warIterationPk")
-    print(last_iteration_pk)
     last_iteration = WarIteration.objects.get(pk=last_iteration_pk)
     war_game: WarGame = last_iteration.game
-    next_iteration = WarIteration.objects.get(game=war_game, index=last_iteration.index + 1)
+    next_iteration = WarIteration.objects.filter(game=war_game, index=last_iteration.index + 1).first()
 
     context = {
             'user_won': war_game.user_won,
