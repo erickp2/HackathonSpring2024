@@ -14,7 +14,7 @@ function openPack(event) {
         cardsContainer = packElement.querySelector(".cards");
         console.log(cardsContainer);
         cardsContainer.style.display = 'inline';
-    }, 0);
+    }, 1000);
 }
 
 function toggleCardSelect(event) {

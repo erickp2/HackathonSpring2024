@@ -2,6 +2,52 @@
     grid-row: 1;
 }
 
+.toDeck1 {
+  animation: scaleAnimation 1s, moveUpAnimation  1s;
+}
+
+@keyframes scaleAnimation {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes moveDownAnimation {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-90%);
+  }
+}
+
+@keyframes moveUpAnimation {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(90%);
+  }
+}
+
+.toDeck2 {
+  animation: scaleAnimation 1s, moveDownAnimation  1s;
+}
+
+@keyframes moveRowAnimation {
+  from {
+    grid-row: 1;
+  }
+  to {
+    grid-row: 2;
+  }
+}
+
 .inWarBounty {
     grid-row: 2;
 }

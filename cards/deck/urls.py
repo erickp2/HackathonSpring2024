@@ -13,5 +13,5 @@ urlpatterns = [
 
         ### added for example
         path('user_deck', user_deck, name='user_deck'),
-
+        path('sorted_deck', sorted_deck, name='sorted_deck'),
 ]

@@ -547,7 +547,7 @@ class WarGame(models.Model):
             WarItem(
                     iteration=normal_win,
                     card=first_deck_card.as_card(),
-                    css_class="inHand2 toDeck2").save()
+                    css_class="inHand1 toDeck2").save()
             WarItem(
                     iteration=normal_win,
                     card=second_deck_card.as_card(),

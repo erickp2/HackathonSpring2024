@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.db.models.query import QuerySet
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
+from random import shuffle
 from .models import *
 
 @require_http_methods(["GET"])
@@ -153,8 +154,20 @@ def next_war_iteration(request: HttpRequest) -> HttpResponse:
 @login_required
 def user_deck(request: HttpRequest) -> HttpResponse:
     # SELECT * FROM Card
-    cards = Card.objects.all()
+    cards = list(Card.objects.all())
+    shuffle(cards)
     context = {
             'cards': cards
+            }
+    return render(request, 'deck.html', context=context)
+
+@require_http_methods(["GET"])
+@login_required
+def sorted_deck(request: HttpRequest) -> HttpResponse:
+    # SELECT * FROM Card
+    cards = list(Card.objects.all())
+    sorted_cards = Card.sort_cards(cards)
+    context = {
+            'cards': sorted_cards
             }
     return render(request, 'deck.html', context=context)
