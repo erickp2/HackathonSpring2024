@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from random import shuffle
 from .models import *
+import random
 
 @require_http_methods(["GET"])
 @login_required
@@ -16,6 +17,10 @@ def deck_builder(request: HttpRequest) -> HttpResponse:
     # for testing purposes let everyone at least have a common pack
     if packs.first() is None:
         Pack.create(request.user, "C")
+        Pack.create(request.user, "U")
+        Pack.create(request.user, "R")
+        Pack.create(request.user, "L")
+
         packs: QuerySet[Pack] = request.user.packs # pyright: ignore
 
     context = {
