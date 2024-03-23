@@ -1,0 +1,57 @@
+.packIcon {
+    cursor: pointer;
+}
+
+.rotatePackOpen {
+  animation: rotateAndFade 1s infinite;
+}
+
+.cardContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.inventoryCard {
+    cursor: grab;
+}
+
+.cardIcon {
+    transition: transform 0.3s, width 0.3s, height 0.3s;
+    transform: translateY(0px) scale(1);
+    cursor: pointer;
+}
+
+
+.cardCount {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.cardSelect {
+    transform: translateY(-10px) scale(1.1);
+}
+
+@keyframes rotateAndFade {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: rotate(45deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(0deg);
+    opacity: 0.5;
+  }
+  75% {
+    transform: rotate(-45deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotate(0deg);
+    opacity: .1;
+  }
+}
+

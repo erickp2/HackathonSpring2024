@@ -1,0 +1,23 @@
+{% load static %}
+<div id="inventory" hx-swap-oob="true">
+    {% regroup inventory_cards by card.suit as inventory_cards_by_suit %}
+    {% for inventory_card_by_suit in inventory_cards_by_suit %}
+        {% regroup inventory_card_by_suit.list by card.rank as inventory_cards_by_rank %}
+        {% for inventory_card_by_rank in inventory_cards_by_rank  %}
+            {% with first_inventory_item=inventory_card_by_rank.list|first %}
+            {% with card=first_inventory_item.card %}
+            {% with count=inventory_card_by_rank.list|length %}
+            {% include 'inventoryCardContainer.html' %}
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+        {% endfor %}
+    {% endfor %}
+    <img 
+        ondragover="cardOver(event)"
+        ondrop="garbageCardDropHandler(event)"
+        src="{% static 'garbage_can.png' %}" 
+        alt="delete" 
+        height="182px">
+</div>
+

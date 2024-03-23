@@ -1,0 +1,26 @@
+{% load static %}
+<button 
+    class="btn btn-primary"
+    hx-get="{% url 'next_war_iteration' %}"
+    hx-vals='{"warIterationPk": {{ iteration.pk }}}'
+    hx-target="#gameContainer">
+     Next play</button>
+<div class="grid-container">
+{% for item in iteration.items.all %}
+{% with card=item.card %}
+    <img 
+        src="
+        {% if item.is_face_down %}
+        {% static "back_card.png" %}
+        {% else %}
+        {% static card.get_path %}
+        {% endif %}
+        " 
+        title="{{ card }}" 
+        class="{{ item.css_class }}"
+        alt="{{ card }}" 
+        width="125px" 
+        height="182px">
+{% endwith %}
+{% endfor %}
+</div>

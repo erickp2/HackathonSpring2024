@@ -1,0 +1,17 @@
+.inHand1 {
+    grid-row: 1;
+}
+
+.inWarBounty {
+    grid-row: 2;
+}
+
+.inHand2 {
+    grid-row: 3;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: 100vh;
+}

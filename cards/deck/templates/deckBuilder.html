@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Deck Builder{% endblock %}
+{% block content %}
+<h2>Build Your Deck</h2>
+{% include 'inventory.html' %}
+{% for pack in packs %}
+<div class="pack text-center" data-amountToPick="{{ pack.amount_to_pick }}">
+    <h3> {{ pack }} (Select up to {{ pack.amount_to_pick }} cards)</h3>
+    <img class="packIcon" src="{% static pack.get_path %}" alt="{{ pack }}" width="200px" height="200px">
+    <div class="cards" style="display: none">
+        {% for pack_item in pack.pack_items.all %}
+        {% with card=pack_item.card %}
+        {# packs are 800px x 800px #}
+            {# cards are 500px x 726px #}
+        <img 
+            data-pk="{{ pack_item.pk }}"
+            src="{% static card.get_path %}" 
+            class="cardIcon"
+            title="{{ card }}" 
+            alt="{{ card }}" 
+            width="125px" 
+            height="182px">
+        {% endwith %}
+        {% endfor %}
+        <form 
+            class="mt-2" 
+            hx-target="closest .pack"
+            hx-post="{% url 'get_cards' %}"
+            hx-vals='{"pack": "{{ pack.pk }}"}'
+            >
+            {% for pack_item in pack.pack_items.all %}
+            <input type="checkbox" name="{{ pack_item.pk }}" hidden>
+            {% endfor %}
+            <button class="btn btn-primary" type="submit">Get cards</button>
+            <button 
+                hx-delete="{% url 'delete_pack' %}"
+                hx-target="closest .pack"
+                hx-vals='{"pack": "{{ pack.pk }}"}'
+                class="btn btn-danger">
+                Delete Pack
+            </button>
+        </form>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+{% block script %}
+<script src="{% static 'deckBuilder.js' %}"></script>
+{% endblock %}
+

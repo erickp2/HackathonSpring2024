@@ -1,0 +1,17 @@
+{% load static %}
+<div class="cardContainer pb-2">
+    <img 
+        id="inventoryItem{{ first_inventory_item.pk }}"
+        hx-delete="{% url 'delete_card' %}"
+        hx-target="closest .cardContainer"
+        hx-trigger="deleteItem"
+        hx-vals='"inventoryItem": "{{ first_inventory_item.pk }}"'
+        src="{% static card.get_path %}" 
+        class="inventoryCard"
+        title="{{ card }}" 
+        alt="{{ card }}" 
+        ondragstart="inventoryCardDragStartHandler(event)"
+        width="125px" 
+        height="182px">
+    <span class="badge rounded-pill text-bg-primary cardCount ">{{ count }}</span>
+</div>
