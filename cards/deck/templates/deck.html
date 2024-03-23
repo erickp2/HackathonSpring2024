@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+These are all the cards
+{% endblock %}
+{% block content %}
+This is your deck!
+<ul>
+    {% for card in cards %}
+    <li>
+        {{ card.rank }} of {{ card.suit }}
+        <img src="{% static card.get_path %}" alt="{{ card.rank }} of {{ card.suit }}">
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -146,3 +146,15 @@ def next_war_iteration(request: HttpRequest) -> HttpResponse:
             }
     return render(request, "warIteration.html", context=context)
 
+
+
+### the added example we did together
+@require_http_methods(["GET"])
+@login_required
+def user_deck(request: HttpRequest) -> HttpResponse:
+    # SELECT * FROM Card
+    cards = Card.objects.all()
+    context = {
+            'cards': cards
+            }
+    return render(request, 'deck.html', context=context)

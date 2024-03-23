@@ -4,7 +4,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Card Home{% endblock %}</title>
+        <title>
+            {% block title %}
+                Card Home
+            {% endblock %}
+        </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'utils.css' %}">
     </head>
@@ -28,6 +32,9 @@
                         <li class="nav-item float-end">
                             <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                         </li>
+                        <li class="nav-item float-end">
+                            <a class="nav-link" href="{% url 'user_deck' %}">All made cards</a>
+                        </li>
                         {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'login' %}">Login</a>
@@ -47,7 +54,6 @@
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-
         {% endfor %} 
         {% endif %}
         <main class="container">
@@ -57,6 +63,18 @@
             Where you can build a deck and fight other plays. 
             May the best deck win!
             </p>
+            <h2>War Rules</h2>
+            <ol>
+                <li>
+                    Higher played card wins
+                </li>
+                <li>
+                    Play until one person loses all their cards
+                </li>
+                <li>
+                    Have Fun!
+                </li>
+            </ol>
             {% endblock %}
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

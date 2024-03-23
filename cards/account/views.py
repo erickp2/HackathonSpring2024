@@ -12,8 +12,8 @@ from django.contrib.auth import authenticate
 @require_http_methods(['POST', 'GET'])
 def login(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
-        # the user submitted the form so try to login them in
         # Check if user exists
+        # the user submitted the form so try to login them in
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
