@@ -8,7 +8,14 @@
     {# need send information about the difficulty here if you are to add a difficulty #}
     hx-post="{% url 'new_war_game' %}"
     hx-target="#gameContainer">
-    Play Easy</button>
+    Play Easy
+</button>
+<button
+    class="btn btn-primary"
+    hx-post="{% url 'new_war_game' %}"
+    hx-target="#gameContainer">
+    Play Medium
+</button>
 <div id="gameContainer"></div>
 
 {% endblock %}

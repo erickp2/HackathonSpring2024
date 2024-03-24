@@ -391,6 +391,15 @@ def get_easy_deck_difficulty() -> list[PlayCard]:
             PlayCard(suit='C', rank='8'), PlayCard(suit='H', rank='8'), PlayCard(suit='S', rank='8'),
             ]
     return EASY_DIFFICULTY_DECK
+def get_medium_deck_difficulty() -> list[PlayCard]:
+    MEDIUM_DIFFICULTY_DECK: list[PlayCard] = [
+        PlayCard(suit='C', rank='7'), PlayCard(suit='H', rank='7'), PlayCard(suit='S', rank='7'),
+        PlayCard(suit='C', rank='8'), PlayCard(suit='H', rank='8'), PlayCard(suit='S', rank='8'),
+        PlayCard(suit='C', rank='9'), PlayCard(suit='H', rank='9'), PlayCard(suit='S', rank='9'),
+        PlayCard(suit='C', rank='10'), PlayCard(suit='H', rank='10'), PlayCard(suit='S', rank='10'),
+        PlayCard(suit='C', rank='11'), PlayCard(suit='H', rank='11'), PlayCard(suit='S', rank='11'),
+        ]
+    return MEDIUM_DIFFICULTY_DECK
 
 class WarGame(models.Model):
     user = models.ForeignKey(User, related_name="war_games", on_delete=models.CASCADE)
@@ -401,6 +410,11 @@ class WarGame(models.Model):
     @staticmethod
     @transaction.atomic
     def generate_game(user: User) -> 'WarGame':
+        if difficulty == 'easy':
+            deck = get_easy_deck_difficulty()
+        elif difficulty == 'medium':
+            deck = get_medium_deck_difficulty()
+            
         # use the users current cards to play the game
         inventory_items: list[PackItem] = list(user.inventory_cards.all()) #pyright: ignore
         # only take the first 26 cards of the user's shuffled deck
